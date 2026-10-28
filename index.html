@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madinah Market — Halal Kabob &amp; Shawarma | Aurora, CO</title>
+<meta name="description" content="Madinah Market — 100% Halal kebab, Turkish, Afghan & Persian food in Aurora, CO. Order takeout or delivery. 3126 S Parker Rd, Aurora, CO 80014 · 720-763-0786">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-overlay">
+    <div class="hero-top">
+      <span class="brand">MADINAH MARKET</span>
+      <span class="halal-badge">100% HALAL</span>
+    </div>
+    <h1>Real Kabob. Real Flavor.</h1>
+    <p class="hero-sub">Kebab · Turkish · Afghan Persian — in the heart of Aurora</p>
+    <p class="hero-info">📍 3126 S Parker Rd, Aurora, CO 80014 &nbsp;·&nbsp; 📞 <a href="tel:+17207630786">720-763-0786</a></p>
+    <p id="open-status" class="status-badge">Checking hours…</p>
+    <a href="#menu" class="btn btn-gold">See the Menu &amp; Order</a>
+  </div>
+</header>
+
+<nav class="cat-nav" id="cat-nav" aria-label="Menu categories"></nav>
+
+<main>
+  <section id="menu" class="menu-section">
+    <div class="menu-head">
+      <h2>Our Menu</h2>
+      <div class="search-box">
+        <input type="search" id="search" placeholder="Search the menu… (e.g. kobideh)" aria-label="Search the menu">
+      </div>
+    </div>
+    <p class="order-note">Order online below for <strong>takeout</strong> or <strong>delivery</strong>. Payment is at the restaurant — no online card payment yet.</p>
+    <div id="menu-container"></div>
+    <p id="no-results" class="no-results" hidden>No dishes match your search.</p>
+  </section>
+
+  <section class="info-section" id="delivery">
+    <h2>Delivery Zones</h2>
+    <p>Delivery is available in these zones. Each zone has a minimum order and a delivery fee, applied at checkout.</p>
+    <div class="table-wrap">
+      <table class="zones-table">
+        <thead><tr><th>Zone</th><th>Minimum order</th><th>Delivery fee</th></tr></thead>
+        <tbody id="zones-body"></tbody>
+      </table>
+    </div>
+    <p class="zone-note">Not sure which zone you're in? Call us at <a href="tel:+17207630786">720-763-0786</a> and we'll help.</p>
+  </section>
+
+  <section class="info-section" id="visit">
+    <h2>Visit Us</h2>
+    <div class="visit-grid">
+      <div>
+        <h3>Address</h3>
+        <p>3126 S Parker Rd<br>Aurora, CO 80014</p>
+        <p><a class="btn btn-outline" href="https://www.google.com/maps/dir/?api=1&destination=3126+S+Parker+Rd+Aurora+CO+80014" target="_blank" rel="noopener">Get Directions</a></p>
+      </div>
+      <div>
+        <h3>Phone</h3>
+        <p><a href="tel:+17207630786">720-763-0786</a></p>
+        <h3>Cuisine</h3>
+        <p>Kebab, Turkish, Afghan Persian / Halal</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <ul class="hours-list">
+          <li><span>Mon – Thu</span><span>10:00 AM – 7:50 PM</span></li>
+          <li><span>Fri – Sat</span><span>10:00 AM – 8:00 PM</span></li>
+          <li><span>Sunday</span><span>10:00 AM – 7:00 PM</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="footer-brand">MADINAH MARKET · 100% HALAL</p>
+  <p>3126 S Parker Rd, Aurora, CO 80014 · <a href="tel:+17207630786">720-763-0786</a></p>
+  <p>Hours: Mon–Thu 10:00 AM–7:50 PM · Fri–Sat 10:00 AM–8:00 PM · Sun 10:00 AM–7:00 PM</p>
+  <p><a href="https://www.google.com/maps/dir/?api=1&destination=3126+S+Parker+Rd+Aurora+CO+80014" target="_blank" rel="noopener">Google Maps Directions</a></p>
+</footer>
+
+<button id="cart-button" class="cart-button" aria-label="Open cart">🛒 Cart · <span id="cart-count">0</span> · <span id="cart-total">$0.00</span></button>
+
+<div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Your Order</h3>
+    <button id="drawer-close" class="icon-btn" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="drawer-foot">
+    <div class="row"><span>Subtotal</span><strong id="drawer-subtotal">$0.00</strong></div>
+    <button id="checkout-open" class="btn btn-gold btn-block">Checkout</button>
+    <p class="drawer-note">Payment is at the restaurant (pickup or delivery). No online payment yet.</p>
+  </div>
+</div>
+<div id="scrim" class="scrim" hidden></div>
+
+<div id="checkout-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="checkout-title">Checkout</h3>
+      <button id="checkout-close" class="icon-btn" aria-label="Close checkout">✕</button>
+    </div>
+
+    <form id="checkout-form" novalidate>
+      <div class="toggle" role="group" aria-label="Order type">
+        <button type="button" id="type-takeout" class="toggle-btn active">Takeout</button>
+        <button type="button" id="type-delivery" class="toggle-btn">Delivery</button>
+      </div>
+
+      <label>Your name
+        <input type="text" id="co-name" required autocomplete="name" placeholder="Full name">
+      </label>
+      <label>Phone
+        <input type="tel" id="co-phone" required autocomplete="tel" placeholder="(720) 555-1234">
+      </label>
+
+      <div id="delivery-fields" hidden>
+        <label>Delivery address
+          <input type="text" id="co-address" autocomplete="street-address" placeholder="Street, apt, city, ZIP">
+        </label>
+        <label>Delivery zone
+          <select id="co-zone"></select>
+        </label>
+      </div>
+
+      <label>Notes (optional)
+        <textarea id="co-notes" rows="2" placeholder="e.g. extra white sauce, mild, etc."></textarea>
+      </label>
+
+      <div class="summary-box">
+        <div class="row"><span>Subtotal</span><span id="sum-subtotal">$0.00</span></div>
+        <div class="row" id="sum-fee-row" hidden><span>Delivery fee</span><span id="sum-fee">$0.00</span></div>
+        <div class="row total"><span>Total (pay at restaurant)</span><strong id="sum-total">$0.00</strong></div>
+      </div>
+
+      <p id="checkout-error" class="error" hidden></p>
+      <button type="submit" id="place-order" class="btn btn-gold btn-block">Place Order</button>
+      <p class="drawer-note">No online payment — you pay at the restaurant. After placing your order, you'll get a one-tap option to text it to us or call to confirm.</p>
+    </form>
+
+    <div id="order-done" hidden>
+      <h4>✅ Order ready to send</h4>
+      <p><strong>One last step:</strong> send us your order so the kitchen can start on it.</p>
+      <pre id="order-text" class="order-text"></pre>
+      <a id="sms-link" class="btn btn-gold btn-block" href="#">📱 Text this order to the restaurant</a>
+      <a class="btn btn-outline btn-block" href="tel:+17207630786">📞 Call to confirm: 720-763-0786</a>
+      <p class="drawer-note">Payment is at the restaurant — at pickup, or to the driver on delivery. Thank you!</p>
+      <button id="done-close" class="btn btn-link">Done</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
